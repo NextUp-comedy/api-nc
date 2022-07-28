@@ -15,7 +15,7 @@ export default async (req: Request, res: Response, next: NextFunction)
     user.isVerified = true;
     await user.save();
 
-    res.status(302).redirect(`${config.server.clientURL}/verifyEmail`);
+    res.status(302).redirect(`${config.server.CLIENT_URL}/verifyEmail`);
   } catch (err) {
     next(err);
   }

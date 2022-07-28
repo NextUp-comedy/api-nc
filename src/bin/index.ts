@@ -15,7 +15,7 @@ const normalizePort = (val: string): number | string | boolean => {
   return false;
 };
 
-const port = normalizePort(config.server.port);
+const port = normalizePort(config.server.PORT);
 
 const onError = (error: NodeJS.ErrnoException): void => {
   if (error.syscall !== 'listen') {

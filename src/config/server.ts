@@ -20,14 +20,14 @@ const config = (): IServer => {
   }
 
   return {
-    secretKey: envVars.JWT_SECRET,
-    appMail: envVars.APP_MAIL,
-    mailPassword: envVars.MAIL_PASSWORD,
-    port: envVars.PORT,
-    clientURL: envVars.CLIENT_BASE_URL,
-    serverURL: envVars.SERVER_BASE_URL,
-    clientId: envVars.CLIENT_ID,
-    googleAPI: envVars.GOOGLE_API,
+    SECRET_KEY: envVars.JWT_SECRET,
+    APP_MAIL: envVars.APP_MAIL,
+    MAIL_PASSWORD: envVars.MAIL_PASSWORD,
+    PORT: envVars.PORT,
+    CLIENT_URL: envVars.CLIENT_BASE_URL,
+    SERVER_URL: envVars.SERVER_BASE_URL,
+    CLIENT_ID: envVars.CLIENT_ID,
+    GOOGLE_API: envVars.GOOGLE_API,
   };
 };
 

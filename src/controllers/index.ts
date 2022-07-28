@@ -10,5 +10,5 @@ export {
   signUpGoogle,
 } from './auth';
 export {
-  pendingUsers, approveUser, approvedUser, rejectUser, rejectedUsers,
+  pendingUsers, approveUser, approvedUser, rejectUser, rejectedUsers, editProfile,
 } from './users';

@@ -24,7 +24,7 @@ export default async ({ body }: Request, res: Response, next: NextFunction)
       roleId,
     }, { expiresIn: '1h' });
 
-    const redirectURL = `${config.server.serverURL}/api/v1/auth/reset-password/${token}`;
+    const redirectURL = `${config.server.SERVER_URL}/api/v1/auth/reset-password/${token}`;
 
     await sendEmail({
       email,

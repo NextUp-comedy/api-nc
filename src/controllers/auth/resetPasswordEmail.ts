@@ -6,7 +6,7 @@ import { constants } from '../../helpers';
 
 export default async (req: Request, res: Response, next: NextFunction)
 :Promise<void> => {
-  const { resetPassword, notExist } = constants.messages.authResponse;
+  const { notExist } = constants.messages.authResponse;
   const token: string = req.params?.token;
 
   try {
@@ -15,7 +15,7 @@ export default async (req: Request, res: Response, next: NextFunction)
     const userExists = await Users.findOne({ where: { email } });
     if (!userExists) res.json({ message: notExist });
 
-    return res.redirect(`${config.server.clientURL}/resetPassword`);
+    return res.redirect(`${config.server.CLIENT_URL}/resetPassword`);
   } catch (error) {
     return next(tokenError(error as Error));
   }

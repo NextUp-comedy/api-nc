@@ -8,7 +8,7 @@ import { checkExistence, constants } from '../../helpers';
 export default async (req: Request, res: Response, next: NextFunction)
 :Promise<void> => {
   const { userId } = req.params;
-  const redirectURL = `${config.server.clientURL}`;
+  const redirectURL = `${config.server.CLIENT_URL}`;
 
   try {
     await idValidation.validateAsync({ userId });

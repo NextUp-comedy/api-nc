@@ -8,7 +8,7 @@ import { checkExistence, constants } from '../../helpers';
 export default async (req: Request, res: Response, next: NextFunction)
 :Promise<void> => {
   const { userId } = req.params;
-  const redirectURL = `${config.server.clientURL}/faq`; // TODO: to be modified with FAQ page
+  const redirectURL = `${config.server.CLIENT_URL}/faq`; // TODO: to be modified with FAQ page
   const contactUs = `mailto:${config.email.NEXTUP_COMEDY_SUPPORT_EMAIL}`;
 
   try {

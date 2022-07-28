@@ -27,7 +27,7 @@ export default async (req: Request, res: Response, next: NextFunction):Promise<v
 
     res.status(200).clearCookie(resetToken).json({
       message: { message: resetPassword },
-      redirect: `${config.server.clientURL}/login`,
+      redirect: `${config.server.CLIENT_URL}/login`,
     });
   } catch (err) {
     next(tokenError(err as Error));

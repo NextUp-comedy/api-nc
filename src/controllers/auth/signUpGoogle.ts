@@ -15,11 +15,11 @@ export default async ({ body }: Request, res: Response, next: NextFunction)
   const { tokenId } = body;
   try {
     // TODO: separate signUp with Google steps
-    const client = new OAuth2Client(config.server.clientId);
+    const client = new OAuth2Client(config.server.CLIENT_ID);
     const verify = async ():Promise<void> => {
       const ticket = await client.verifyIdToken({
         idToken: tokenId,
-        audience: config.server.clientId,
+        audience: config.server.CLIENT_ID,
       });
       ticket.getPayload();
     };
@@ -33,7 +33,7 @@ export default async ({ body }: Request, res: Response, next: NextFunction)
         picture: image,
       },
     } = await axios.get(
-      `${config.server.googleAPI}tokeninfo?id_token=${tokenId}`,
+      `${config.server.GOOGLE_API}tokeninfo?id_token=${tokenId}`,
     );
 
     await checkExistence.RegistrationCheck(email);
@@ -52,7 +52,7 @@ export default async ({ body }: Request, res: Response, next: NextFunction)
       image,
       googleId: sub,
     });
-    res.status(201).redirect(`${config.server.clientURL}/verifyEmail`);
+    res.status(201).redirect(`${config.server.CLIENT_URL}/verifyEmail`);
   } catch (error) {
     next(validateError(error as Error));
   }

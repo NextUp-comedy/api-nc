@@ -1,9 +1,9 @@
 import { Request, Response } from 'express';
-import { constants } from '../../helpers';
+import { messages } from '../../helpers/constants';
 
 export default async (req: Request, res: Response):
 Promise<void> => {
-  const { logOut } = constants.messages.authResponse;
-  const { accessToken } = constants.messages.token;
-  res.clearCookie(accessToken).json({ message: logOut });
+  const { logOut } = messages.authResponse;
+  const { accessToken } = messages.token;
+  res.status(200).clearCookie(accessToken).json({ message: logOut });
 };

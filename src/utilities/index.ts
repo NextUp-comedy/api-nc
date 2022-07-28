@@ -1,6 +1,6 @@
 export { default as CustomError } from './CustomError';
 export {
-  signupSchema, loginSchema, idValidation, emailValidation,
+  signupSchema, loginSchema, idValidation, emailValidation, editProfileValidation,
 } from './validation';
 export { default as validateError } from './validationError';
 export { default as sendEmail } from './emailService';
