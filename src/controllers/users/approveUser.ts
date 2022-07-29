@@ -8,6 +8,7 @@ import { checkExistence, constants } from '../../helpers';
 export default async (req: Request, res: Response, next: NextFunction)
 :Promise<void> => {
   const { userId } = req.params;
+  const redirectURL = `${config.server.clientURL}`;
 
   try {
     await idValidation.validateAsync({ userId });
@@ -18,10 +19,14 @@ export default async (req: Request, res: Response, next: NextFunction)
     await user.save();
 
     const { username, email } = user;
-    await sendEmail(email, 'Welcome to NextUp Comedy', `<h1>Welcome, ${username}!</h1><p>Your account has been approved you are free to log in <a href="${config.server.clientURL}/">this link</a> to log in.</p>`);
+
+    await sendEmail({
+      email, type: 'approve', username, redirectURL,
+    });
+
     res
       .status(201)
-      .json({ message: constants.messages.check.emailCheck });
+      .json({ message: constants.messages.authResponse.adminApproval });
   } catch (err) {
     next(validateError(err as Error));
   }

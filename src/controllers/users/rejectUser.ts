@@ -2,11 +2,14 @@ import { NextFunction, Request, Response } from 'express';
 import {
   idValidation, validateError, sendEmail,
 } from '../../utilities';
+import config from '../../config';
 import { checkExistence, constants } from '../../helpers';
 
 export default async (req: Request, res: Response, next: NextFunction)
 :Promise<void> => {
   const { userId } = req.params;
+  const redirectURL = `${config.server.clientURL}/faq`; // TODO: to be modified with FAQ page
+  const contactUs = `mailto:${config.email.NEXTUP_COMEDY_SUPPORT_EMAIL}`;
 
   try {
     await idValidation.validateAsync({ userId });
@@ -17,7 +20,11 @@ export default async (req: Request, res: Response, next: NextFunction)
     await user.save();
 
     const { username, email } = user;
-    await sendEmail(email, 'NextUp Comedy', `<h1>Welcome, ${username}!</h1><p>Sorry to form you that your application has been rejected, if you need more information  <a href="mailto:support@nextupcomedy.com" >contact us</a>.</p>`);
+
+    await sendEmail({
+      email, type: 'reject', username, redirectURL, contactUs,
+    });
+
     res
       .status(201)
       .json({ message: constants.messages.check.emailCheck });

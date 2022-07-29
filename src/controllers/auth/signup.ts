@@ -37,16 +37,17 @@ export default async ({ body }: Request, res: Response, next: NextFunction):Prom
       roleId,
     }, { expiresIn: '1h' });
 
-    await sendEmail(email, 'NextUp Comedy Email verification', `<h1>Welcome, ${username}!</h1>
-    <p>Please verify your email by clicking this <a href="${config.server.serverURL}/auth/verify-email/${token}">link</a> </p>
-    <br/>
-    <p> Stay tuned.</p>`);
+    const redirectURL = `${config.server.serverURL}/api/v1/auth/verify-email/${token}`;
+
+    await sendEmail({
+      email, type: 'verify', username, redirectURL,
+    });
 
     res
       .cookie(verifyToken, token)
       .status(201)
       .json({ message: emailCheck });
   } catch (err) {
-    next(validateError(err as Error));
+    next(validateError(err as Error)); // TODO: handle internal server error
   }
 };

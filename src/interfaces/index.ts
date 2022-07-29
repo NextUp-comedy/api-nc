@@ -30,6 +30,7 @@ interface IServer{
   clientId: string;
   googleAPI: string;
 }
+
 interface IDatabase{
 url:string
 }
@@ -83,5 +84,11 @@ interface ErrorWithDetails extends Error {
 export {
   IServerAddress,
   IUser,
-  IServer, IDatabase, UserAuth, ApprovedUser, GoogleUserRequest, IUsers, ErrorWithDetails,
+  IServer,
+  IDatabase,
+  UserAuth,
+  ApprovedUser,
+  GoogleUserRequest,
+  IUsers,
+  ErrorWithDetails
 };
